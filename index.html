@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birra33</title>
+    <link rel="icon" href="./img/logo-ico.png">
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://kit.fontawesome.com/a328b1d1bc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+    <header>
+        <img src="img/logo.png" alt="logo" id="logo-img">
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Brewery</a>
+                </li>
+                <li>
+                    <a href="#" >Events</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Site content -->
+    <section class="content">
+        <div class="content-card-filters-div">
+            <div class="card">
+
+            </div>
+            <div class="filters">
+                <div class="price-filter">
+                    <h5>PRICE FILTER</h5>
+                    <input 
+                        id="price-slider"
+                        data-role="doubleslider"
+                        data-min="0" 
+                        data-max="60"
+                        data-hint="true"
+                        data-cls-hint="bg-red fg-white"
+                        data-cls-complete="bg-red"
+                        class="ultra-thin cycle-marker"
+                    >
+                    <button class="btn-filter">FILLTER</button>
+                    <p class="show-price">Price: $0 - $60</p>
+                    <button class="reset"><i class="fa-solid fa-filter-circle-xmark"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-main">
+            <div class="content-navbar">
+                <div class="content-navbar-icons">
+                    <i class="fa-solid fa-table-cells show-table"></i>
+                    <i class="fa-solid fa-list show-list"></i>
+                </div>
+                <input type="search" placeholder="Search beers">
+                <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <div id="snackbar"></div>
+            </div>
+
+            <div class="content-items">
+
+            </div>
+        </div>
+    </section>
+    <!--  -->
+
+    <!-- Handlebars template -->
+    <script type="text/x-handlebars-template" id="template">
+        {{#each this}}
+        <div class="beer-box">
+            <img src={{this.image_url}} alt="beer">
+            <p class="price">${{this.abv}}</p>
+            <button class="add-to-cart">ADD TO CART</button>
+        </div>
+        {{/each}}
+    </script>
+    <!--  -->
+
+    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
