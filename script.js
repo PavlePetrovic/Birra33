@@ -1,11 +1,10 @@
-
 function getData(){
     axios.get('https://api.punkapi.com/v2/beers')
         .then(res => {
-            console.log(res.data);
             showTemplate(res.data);
             search(res.data)
             priceFilter(res.data)
+            addToCart(res.data)
         })
         .catch(err => {
             console.log(err);
@@ -39,6 +38,7 @@ function search(data){
     let searchBar = document.querySelector('input[type="search"]')
     let searchBtn = document.querySelector('.search-button')
     let snackbar = document.getElementById('snackbar')
+    let resetSearch = document.querySelector('.reset-search')
     
     let searchedBeer = []
 
@@ -54,6 +54,8 @@ function search(data){
                 snackbar.className = snackbar.className.replace("show", ""); 
             }, 3000);
         } else {
+            resetSearch.style.display = 'block'
+
             data.forEach(beer => {
                 if(beer.name.toLowerCase() === searchBarValue.toLowerCase()){
                     if(!searchedBeer.includes(beer)){
@@ -65,10 +67,17 @@ function search(data){
                 }
             })
             showTemplate(searchedBeer)
+            addToCart(searchedBeer)
         }
 
-        searchBar.value = ''
         searchedBeer = []
+    })
+    
+    resetSearch.addEventListener('click', () => {
+        resetSearch.style.display = 'none'
+        showTemplate(data)
+        searchBar.value = ''
+        addToCart(data)
     })
 }
 
@@ -122,10 +131,86 @@ function priceFilter(data){
         }
        
         showTemplate(beersInPriceRange)
+        addToCart(beersInPriceRange)
     })
 
     resetFilter.addEventListener('click', () => {
         resetFilter.style.display = 'none'
         showTemplate(data)
+        showPrice.innerHTML = `Price: $0 - $60`
+        addToCart(data)
     })
+}
+
+function addToCart(data){
+    let contentBox = document.querySelector(".content-items")
+    let beerBox = contentBox.querySelectorAll('.beer-box')
+    let cart = document.querySelector('.cart')
+    let cartPrices = document.querySelector('.cart-prices')
+    let total = cart.querySelector('.total')
+
+    let beersInCart = []
+    let totalPrice = 0
+    
+    beerBox.forEach(beerDivItem => {
+        beerDivItem.addEventListener('click', (e) => {
+            if(e.target.tagName === 'BUTTON'){
+                let beerName = beerDivItem.children[3].innerText
+                data.forEach(beerData => {
+                    if(beerName === beerData.name){
+                        if(beersInCart.includes(beerData)){
+                            beerData.selectedBeerQuantity = beerData.selectedBeerQuantity + 1
+                        } else{
+                            beersInCart.push(beerData)
+                            beerData.selectedBeerQuantity = 1
+                        }
+                        let price = beerData.abv
+                        totalPrice += price
+                    }
+                })
+            }      
+            showTemplateCart(beersInCart)
+            total.innerText = `TOTAL: $${totalPrice.toFixed(1)}`
+        })
+    })
+
+    cartPrices.addEventListener('click', (e) => {
+        if(e.target.tagName === 'I'){
+            let clickedItem = e.target.parentElement
+            let itemText = clickedItem.innerHTML
+            let indexOfIcoStart = itemText.indexOf('<')
+            itemText = itemText.substring(0, indexOfIcoStart)
+            let indexOfDash = itemText.lastIndexOf('-')
+            let delItemName = itemText.substring(0, indexOfDash)
+            delItemName = delItemName.trim()
+
+            clickedItem.remove()
+        
+            if(beersInCart.length === 1){
+                beersInCart.pop()
+                totalPrice = 0
+                total.innerText = ''
+            } else{
+                beersInCart.forEach(beer => {
+                    if(beer.name === delItemName){
+                            totalPrice = totalPrice - beer.selectedBeerQuantity * beer.abv
+                            total.innerText = `TOTAL: $${totalPrice.toFixed(1)}`
+                            beer.selectedBeerQuantity = 1
+                            beersInCart.splice(beersInCart.indexOf(beer), 1)
+                    }
+                })
+            }  
+        }
+    })
+}
+
+function showTemplateCart(data){
+    let beers = data
+    
+    let scriptTemplate = document.querySelector('#template-cart')
+    let cart = document.querySelector(".cart-prices")
+    
+    let template = Handlebars.compile(scriptTemplate.innerHTML)
+    let filled = template(beers)
+    cart.innerHTML = filled
 }

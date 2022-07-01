@@ -72,22 +72,39 @@ header nav ul li a:hover {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.content .content-card-filters-div {
+.content .content-cart-filters-div {
   width: 250px;
-  height: 600px;
 }
 
-.content .content-card-filters-div .card {
+.content .content-cart-filters-div .cart {
+  padding-block: 30px;
+  padding-inline: 20px;
   background-color: #E3CFAB;
+  color: #BF431F;
   width: 100%;
-  height: 200px;
+  min-height: 200px;
 }
 
-.content .content-card-filters-div .filters {
+.content .content-cart-filters-div .cart p {
+  color: black;
+  font-size: 14px;
+  text-align: right;
+}
+
+.content .content-cart-filters-div .cart p i {
+  color: #BF431F;
+  cursor: pointer;
+}
+
+.content .content-cart-filters-div .cart .total {
+  color: #BF431F;
+}
+
+.content .content-cart-filters-div .filters {
   background-color: #E3CFAB;
   margin-top: 10px;
   width: 100%;
-  padding-top: 50px;
+  padding-top: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -98,16 +115,16 @@ header nav ul li a:hover {
   padding-bottom: 50px;
 }
 
-.content .content-card-filters-div .filters .price-filter {
+.content .content-cart-filters-div .filters .price-filter {
   padding-inline: 20px;
 }
 
-.content .content-card-filters-div .filters .price-filter h5 {
+.content .content-cart-filters-div .filters .price-filter h5 {
   color: #BF431F;
   letter-spacing: 0.5px;
 }
 
-.content .content-card-filters-div .filters .price-filter .btn-filter {
+.content .content-cart-filters-div .filters .price-filter .btn-filter {
   background-color: #BF431F;
   color: #E3CFAB;
   padding-block: 8px;
@@ -120,20 +137,20 @@ header nav ul li a:hover {
   cursor: pointer;
 }
 
-.content .content-card-filters-div .filters .price-filter .btn-filter:hover {
+.content .content-cart-filters-div .filters .price-filter .btn-filter:hover {
   background-color: white;
   color: #BF431F;
   -webkit-transition: 0.2s;
   transition: 0.2s;
 }
 
-.content .content-card-filters-div .filters .price-filter p {
+.content .content-cart-filters-div .filters .price-filter p {
   font-size: 13px;
   text-align: right;
   margin-top: 12px;
 }
 
-.content .content-card-filters-div .filters .price-filter .reset {
+.content .content-cart-filters-div .filters .price-filter .reset {
   display: none;
   background-color: #BF431F;
   color: #E3CFAB;
@@ -147,7 +164,7 @@ header nav ul li a:hover {
   cursor: pointer;
 }
 
-.content .content-card-filters-div .filters .price-filter .reset:hover {
+.content .content-cart-filters-div .filters .price-filter .reset:hover {
   background-color: white !important;
   color: #BF431F !important;
   -webkit-transition: 0.2s;
@@ -187,6 +204,19 @@ header nav ul li a:hover {
   color: #BF431F;
   padding-inline: 2px;
   font-size: 20px;
+  cursor: pointer;
+}
+
+.content .content-main .content-navbar .reset-search {
+  display: none;
+}
+
+.content .content-main .content-navbar .reset-search i {
+  margin-left: -30px;
+  color: #BF431F;
+  padding-block: 8px;
+  border: none;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -266,7 +296,7 @@ header nav ul li a:hover {
 .content .content-main .content-items .beer-box img {
   width: 80px;
   height: 320px;
-  padding-block: 15px;
+  padding-top: 15px;
 }
 
 .content .content-main .content-items .beer-box .price {
@@ -287,5 +317,9 @@ header nav ul li a:hover {
   background-color: #BF431F;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+}
+
+.content .content-main .content-items .beer-box span {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

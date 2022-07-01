@@ -59,21 +59,38 @@ header{
     gap: 30px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
-    .content-card-filters-div{
+    .content-cart-filters-div{
         width: 250px;
-        height: 600px;
         
-        .card{
+        .cart{
+            padding-block: 30px;
+            padding-inline: 20px;
             background-color: #E3CFAB;
+            color: #BF431F;
             width: 100%;
-            height: 200px;
+            min-height: 200px;
+
+            p{
+                color: black;
+                font-size: 14px;
+                text-align: right;
+
+                i{
+                    color: #BF431F;
+                    cursor: pointer;
+                }
+            }
+
+            .total{
+                color: #BF431F;
+            }
         }
 
         .filters{
             background-color: #E3CFAB;
             margin-top: 10px;
             width: 100%;
-            padding-top: 50px;
+            padding-top: 40px;
             display: flex;
             flex-direction: column;
             padding-bottom: 50px;
@@ -147,7 +164,6 @@ header{
             display: flex;
             align-items: center;
             padding-inline: 30px;
-            // position: relative;
             
             .content-navbar-icons{
                 margin-right: auto;
@@ -156,6 +172,20 @@ header{
                     color: #BF431F;
                     padding-inline: 2px;
                     font-size: 20px;
+                    cursor: pointer;
+                }
+            }
+
+            .reset-search{
+                display: none;
+                // padding-right: 5px;
+                
+                i{
+                    margin-left: -30px;
+                    color: #BF431F;
+                    padding-block: 8px;
+                    border: none;
+                    font-size: 16px;
                     cursor: pointer;
                 }
             }
@@ -219,7 +249,7 @@ header{
                 img{
                     width: 80px;
                     height: 320px;
-                    padding-block: 15px;
+                    padding-top: 15px;
                 }
 
                 .price{
@@ -238,6 +268,10 @@ header{
                         background-color: #BF431F;
                         transition: 0.2s;
                     }
+                }
+
+                span{
+                    display: none;
                 }
             }
         }

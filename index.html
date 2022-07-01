@@ -34,9 +34,11 @@
 
     <!-- Site content -->
     <section class="content">
-        <div class="content-card-filters-div">
-            <div class="card">
-
+        <div class="content-cart-filters-div">
+            <div class="cart">
+                <h5>MY CART</h5>
+                <div class="cart-prices"></div>
+                <p class="total"></p>
             </div>
             <div class="filters">
                 <div class="price-filter">
@@ -65,6 +67,7 @@
                     <i class="fa-solid fa-list show-list"></i>
                 </div>
                 <input type="search" placeholder="Search beers">
+                <div class="reset-search"><i class="fa-solid fa-xmark"></i></div>
                 <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                 <div id="snackbar"></div>
             </div>
@@ -83,7 +86,16 @@
             <img src={{this.image_url}} alt="beer">
             <p class="price">${{this.abv}}</p>
             <button class="add-to-cart">ADD TO CART</button>
+            <span>{{this.name}}</span>
         </div>
+        {{/each}}
+    </script>
+    <!--  -->
+
+    <!-- Handlebars cart template -->
+    <script type="text/x-handlebars-template" id="template-cart">
+        {{#each this}}
+            <p>{{this.name}} - {{this.selectedBeerQuantity}} ${{this.abv}} <i class="fa-solid fa-xmark deleteBeerIco"></i></p>
         {{/each}}
     </script>
     <!--  -->
