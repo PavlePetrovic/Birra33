@@ -85,6 +85,11 @@ header nav ul li a:hover {
   min-height: 200px;
 }
 
+.content .content-cart-filters-div .cart .cart-placeholder {
+  color: black;
+  font-size: 15px;
+}
+
 .content .content-cart-filters-div .cart p {
   color: black;
   font-size: 14px;
@@ -124,51 +129,105 @@ header nav ul li a:hover {
   letter-spacing: 0.5px;
 }
 
-.content .content-cart-filters-div .filters .price-filter .btn-filter {
-  background-color: #BF431F;
-  color: #E3CFAB;
-  padding-block: 8px;
-  width: 92px;
-  border: none;
-  margin-left: 117px;
-  margin-top: 5px;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-}
-
-.content .content-cart-filters-div .filters .price-filter .btn-filter:hover {
-  background-color: white;
-  color: #BF431F;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-}
-
 .content .content-cart-filters-div .filters .price-filter p {
   font-size: 13px;
   text-align: right;
   margin-top: 12px;
 }
 
-.content .content-cart-filters-div .filters .price-filter .reset {
-  display: none;
+.content .content-cart-filters-div .filters .date-filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.content .content-cart-filters-div .filters .date-filter div {
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.content .content-cart-filters-div .filters .date-filter div input {
+  width: 100px;
+  background-color: #F4E8CE;
+  color: black;
+  border: none;
+  padding: 2px;
+  padding-left: 15px;
+}
+
+.content .content-cart-filters-div .filters .date-filter div label {
+  padding-top: 2px;
+  color: #BF431F;
+  font-size: 13px;
+  text-align: center;
+}
+
+.content .content-cart-filters-div .filters .radio-filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+}
+
+.content .content-cart-filters-div .filters .radio-filter div {
+  cursor: pointer;
+}
+
+.content .content-cart-filters-div .filters .radio-filter div input {
+  cursor: pointer;
+}
+
+.content .content-cart-filters-div .filters .radio-filter div label {
+  cursor: pointer;
+}
+
+.content .content-cart-filters-div .filters .btn-filter {
+  margin-left: auto;
+  margin-right: auto;
   background-color: #BF431F;
   color: #E3CFAB;
   padding-block: 8px;
   width: 92px;
   border: none;
-  margin-left: 117px;
-  margin-top: 9px;
+  margin-top: 5px;
   font-size: 13px;
   letter-spacing: 0.5px;
   cursor: pointer;
 }
 
-.content .content-cart-filters-div .filters .price-filter .reset:hover {
-  background-color: white !important;
-  color: #BF431F !important;
+.content .content-cart-filters-div .filters .btn-filter:hover {
+  background-color: white;
+  color: #BF431F;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+}
+
+.content .content-cart-filters-div .filters .reset {
+  display: none;
+  color: #BF431F;
+  text-decoration: underline;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .content .content-main {
@@ -289,37 +348,62 @@ header nav ul li a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding: 0px;
   width: 260px;
   background-color: #E3CFAB;
 }
 
 .content .content-main .content-items .beer-box img {
   width: 80px;
-  height: 320px;
-  padding-top: 15px;
+  height: 300px;
+  margin-top: 15px;
+  margin-inline: 0px;
 }
 
-.content .content-main .content-items .beer-box .price {
+.content .content-main .content-items .beer-box .beer-description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 260px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 0px;
+}
+
+.content .content-main .content-items .beer-box .beer-description h3 {
+  display: none;
+  margin-bottom: 0px;
+}
+
+.content .content-main .content-items .beer-box .beer-description .description-text {
+  display: none;
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+.content .content-main .content-items .beer-box .beer-description .price {
   color: #BF431F;
   padding-bottom: 10px;
 }
 
-.content .content-main .content-items .beer-box .add-to-cart {
+.content .content-main .content-items .beer-box .beer-description .add-to-cart {
   color: #E3CFAB;
   width: 100%;
-  padding-block: 20px;
+  margin-top: 0px;
+  padding-block: 15px;
   border: none;
   background-color: #D57F2C;
   cursor: pointer;
 }
 
-.content .content-main .content-items .beer-box .add-to-cart:hover {
+.content .content-main .content-items .beer-box .beer-description .add-to-cart:hover {
   background-color: #BF431F;
   -webkit-transition: 0.2s;
   transition: 0.2s;
-}
-
-.content .content-main .content-items .beer-box span {
-  display: none;
 }
 /*# sourceMappingURL=style.css.map */

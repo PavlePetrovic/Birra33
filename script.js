@@ -2,9 +2,10 @@ function getData(){
     axios.get('https://api.punkapi.com/v2/beers')
         .then(res => {
             showTemplate(res.data);
+            showTableShowList()
             search(res.data)
-            priceFilter(res.data)
             addToCart(res.data)
+            filter()
         })
         .catch(err => {
             console.log(err);
@@ -49,6 +50,8 @@ function search(data){
             snackbar.className = "show"
             snackbar.innerText = "Beer name"
             showTemplate(data)
+            addToCart(data)
+            showTableShowList()
 
             setTimeout( function(){  
                 snackbar.className = snackbar.className.replace("show", ""); 
@@ -68,6 +71,7 @@ function search(data){
             })
             showTemplate(searchedBeer)
             addToCart(searchedBeer)
+            showTableShowList()
         }
 
         searchedBeer = []
@@ -78,6 +82,7 @@ function search(data){
         showTemplate(data)
         searchBar.value = ''
         addToCart(data)
+        showTableShowList()
     })
 }
 
@@ -85,60 +90,79 @@ function showTableShowList(){
     let showTable = document.querySelector('.show-table')
     let showList = document.querySelector('.show-list')
     let contentItems = document.querySelector('.content-items')
+    let beerBox = document.querySelectorAll('.beer-box')
+    let beerBoxImg = document.querySelectorAll('.beer-box img')
+    let beerDescription = document.querySelectorAll('.beer-description')
+    let beerDescriptionH3 = document.querySelectorAll('.beer-description h3')
+    let beerDescriptionText = document.querySelectorAll('.description-text')
+    let beerPrice = document.querySelectorAll('.price')
+    let addToCartBtn = document.querySelectorAll('.add-to-cart')
+
+    contentItems.style.flexDirection = 'row'
 
     showTable.addEventListener('click', () => {
         contentItems.style.flexDirection = 'row'
+        beerBox.forEach(box => {
+            console.log(box);
+            box.style.flexDirection = 'column'
+            box.style.width = '260px'
+            box.style.justifyContent = 'center'
+            box.style.padding = '0px'
+        })
+        beerBoxImg.forEach(img => {
+            img.style.marginTop = '25px'
+            img.style.marginInline = '0px'
+        })
+        beerDescription.forEach(desc => {
+            desc.style.width = '260px'
+            desc.style.alignItems = 'center'
+            desc.style.paddingLeft = '0px'
+        })
+        beerDescriptionH3.forEach(h => {
+            h.style.display = 'none'
+        })
+        beerDescriptionText.forEach(text => {
+            text.style.display = 'none'
+        })
+        beerPrice.forEach(price => {
+            price.style.color = '#BF431F'
+        })
+        addToCartBtn.forEach(btn => {
+            btn.style.width = '100%'
+            btn.style.marginTop = '0px'
+        })
     })
 
     showList.addEventListener('click', () => {
         contentItems.style.flexDirection = 'column'
-    })
-}
-showTableShowList()
-
-function priceFilter(data){
-    let priceSlider = document.getElementById('price-slider')
-    let priceFilterBtn = document.querySelector('.btn-filter')
-    let showPrice = document.querySelector('.show-price')
-    let resetFilter = document.querySelector('.reset')
-
-    let beersInPriceRange = []
-    
-    priceFilterBtn.addEventListener('click', () => {
-        resetFilter.style.display = 'block'
-        let priceRange = priceSlider.value.replace(/\s+/g, '') // Pr: 0, 80 -> 0,80
-        let commaIndex = priceRange.indexOf(',')
-        let price1 = priceRange.substring(0, commaIndex)
-        let price2 = priceRange.substring(commaIndex + 1)
-        showPrice.innerHTML = `Price: $${price1} - $${price2}`
-
-        let condition = false
-        data.forEach(beer => {
-            if(beer.abv >= price1 && beer.abv <= price2){
-                if(!beersInPriceRange.includes(beer)){
-                    beersInPriceRange.push(beer)
-                }
-                condition = true
-            } else{
-                if(beersInPriceRange.includes(beer)){
-                    let beerIndex = beersInPriceRange.indexOf(beer)
-                    beersInPriceRange.splice(beerIndex, 1)
-                }
-            }
+        beerBox.forEach(box => {
+            box.style.flexDirection = 'row'
+            box.style.width = '100%'
+            box.style.justifyContent = 'flex-start'
+            box.style.padding = '25px'
         })
-        if(condition === false){
-            beersInPriceRange = []
-        }
-       
-        showTemplate(beersInPriceRange)
-        addToCart(beersInPriceRange)
-    })
-
-    resetFilter.addEventListener('click', () => {
-        resetFilter.style.display = 'none'
-        showTemplate(data)
-        showPrice.innerHTML = `Price: $0 - $60`
-        addToCart(data)
+        beerBoxImg.forEach(img => {
+            img.style.marginTop = '0px'
+            img.style.marginInline = '60px'
+        })
+        beerDescription.forEach(desc => {
+            desc.style.width = '100%'
+            desc.style.alignItems = 'flex-start'
+            desc.style.paddingLeft = '25px'
+        })
+        beerDescriptionH3.forEach(h => {
+            h.style.display = 'block'
+        })
+        beerDescriptionText.forEach(text => {
+            text.style.display = 'block'
+        })
+        beerPrice.forEach(price => {
+            price.style.color = 'black'
+        })
+        addToCartBtn.forEach(btn => {
+            btn.style.width = '170px'
+            btn.style.marginTop = '5px'
+        })
     })
 }
 
@@ -146,6 +170,7 @@ function addToCart(data){
     let contentBox = document.querySelector(".content-items")
     let beerBox = contentBox.querySelectorAll('.beer-box')
     let cart = document.querySelector('.cart')
+    let cartPlaceholder = document.querySelector('.cart-placeholder')
     let cartPrices = document.querySelector('.cart-prices')
     let total = cart.querySelector('.total')
 
@@ -155,7 +180,8 @@ function addToCart(data){
     beerBox.forEach(beerDivItem => {
         beerDivItem.addEventListener('click', (e) => {
             if(e.target.tagName === 'BUTTON'){
-                let beerName = beerDivItem.children[3].innerText
+                cartPlaceholder.innerText = ''
+                let beerName = beerDivItem.children[1].children[0].innerText
                 data.forEach(beerData => {
                     if(beerName === beerData.name){
                         if(beersInCart.includes(beerData)){
@@ -168,9 +194,9 @@ function addToCart(data){
                         totalPrice += price
                     }
                 })
+                total.innerText = `TOTAL: $${totalPrice.toFixed(1)}`
             }      
             showTemplateCart(beersInCart)
-            total.innerText = `TOTAL: $${totalPrice.toFixed(1)}`
         })
     })
 
@@ -188,15 +214,16 @@ function addToCart(data){
         
             if(beersInCart.length === 1){
                 beersInCart.pop()
+                cartPlaceholder.innerText = 'No products in the cart'
                 totalPrice = 0
                 total.innerText = ''
             } else{
                 beersInCart.forEach(beer => {
                     if(beer.name === delItemName){
-                            totalPrice = totalPrice - beer.selectedBeerQuantity * beer.abv
-                            total.innerText = `TOTAL: $${totalPrice.toFixed(1)}`
-                            beer.selectedBeerQuantity = 1
-                            beersInCart.splice(beersInCart.indexOf(beer), 1)
+                        totalPrice = totalPrice - beer.selectedBeerQuantity * beer.abv
+                        total.innerText = `TOTAL: $${totalPrice.toFixed(1)}`
+                        beer.selectedBeerQuantity = 1
+                        beersInCart.splice(beersInCart.indexOf(beer), 1)
                     }
                 })
             }  
@@ -213,4 +240,138 @@ function showTemplateCart(data){
     let template = Handlebars.compile(scriptTemplate.innerHTML)
     let filled = template(beers)
     cart.innerHTML = filled
+}
+
+function priceFilter(data){
+    let priceSlider = document.getElementById('price-slider')
+    let showPrice = document.querySelector('.show-price')
+
+    let beersInPriceRange = []
+    
+    let priceRange = priceSlider.value.replace(/\s+/g, '') // Pr: 0, 80 -> 0,80
+    let commaIndex = priceRange.indexOf(',')
+    let price1 = priceRange.substring(0, commaIndex)
+    let price2 = priceRange.substring(commaIndex + 1)
+    showPrice.innerHTML = `Price: $${price1} - $${price2}`
+
+    let condition = false
+    data.forEach(beer => {
+        if(beer.abv >= price1 && beer.abv <= price2){
+            if(!beersInPriceRange.includes(beer)){
+                beersInPriceRange.push(beer)
+            }
+            condition = true
+        } else{
+            if(beersInPriceRange.includes(beer)){
+                let beerIndex = beersInPriceRange.indexOf(beer)
+                beersInPriceRange.splice(beerIndex, 1)
+            }
+        }
+    })
+
+    if(condition === false){
+        beersInPriceRange = []
+    }
+    
+    showTemplate(beersInPriceRange)
+    addToCart(data)
+    showTableShowList()
+}
+
+function filter(){
+    let filterBtn = document.querySelector('.btn-filter')
+    let brewedAfter = document.getElementById('brewed-after')
+    let brewedBefore = document.getElementById('brewed-before')
+    let resetFilters = document.querySelector('.reset')
+    let searchBar = document.querySelector('input[type="search"]')
+    let resetSearch = document.querySelector('.reset-search')
+    brewedAfter.value = '2005-05'
+    brewedBefore.value = '2022-02'
+    
+    filterBtn.addEventListener('click', () => {
+        resetFilters.style.display = 'block'
+
+        let after = brewedAfter.value
+        let before = brewedBefore.value
+        afterYear = after.substring(0, 4)
+        afterMonth = after.substring(5)
+        beforeYear = before.substring(0, 4)
+        beforeMonth = before.substring(5)
+        let pickedFood = ''
+        
+        let food = document.querySelectorAll('.radio-filter div input[name="food"]')
+        food.forEach(radio => {
+            if(radio.checked){
+                pickedFood = radio.value
+            }
+        })
+
+        if(after && before && pickedFood){
+            axios.get(`https://api.punkapi.com/v2/beers?brewed_after=${afterMonth}-${afterYear}&brewed_before=${beforeMonth}-${beforeYear}&food=${pickedFood}`)
+                .then(res => {
+                    priceFilter(res.data)
+                })
+        } else if(after && before){
+            axios.get(`https://api.punkapi.com/v2/beers?brewed_after=${afterMonth}-${afterYear}&brewed_before=${beforeMonth}-${beforeYear}`)
+                .then(res => {
+                    priceFilter(res.data)
+                })
+        } else if(after && pickedFood){
+            axios.get(`https://api.punkapi.com/v2/beers?brewed_after=${afterMonth}-${afterYear}&food=${pickedFood}`)
+                .then(res => {
+                    priceFilter(res.data)
+                })
+        } else if(before && pickedFood){
+            axios.get(`https://api.punkapi.com/v2/beers?brewed_before=${beforeMonth}-${beforeYear}&food=${pickedFood}`)
+                .then(res => {
+                    priceFilter(res.data)
+                })
+        } else if(after){
+            axios.get(`https://api.punkapi.com/v2/beers?brewed_after=${afterMonth}-${afterYear}`)
+                .then(res => {
+                    priceFilter(res.data)
+                })
+        } else if(before){
+            axios.get(`https://api.punkapi.com/v2/beers?brewed_before=${beforeMonth}-${beforeYear}`)
+                .then(res => {
+                    priceFilter(res.data)
+                })
+        } else if(pickedFood){
+            axios.get(`https://api.punkapi.com/v2/beers?food=${pickedFood}`)
+                .then(res => {
+                    priceFilter(res.data)
+                })
+        } else{
+            axios.get(`https://api.punkapi.com/v2/beers`)
+            .then(res => {
+                priceFilter(res.data)
+            })
+        }
+
+        resetSearch.style.display = 'none'
+        searchBar.value = ''
+    })
+
+    resetFilters.addEventListener('click', () => {
+        let priceSlider = document.getElementById('price-slider')
+        let showPrice = document.querySelector('.show-price')
+        priceSlider.value = '0, 60'
+        showPrice.innerHTML = `Price: $0 - $60`
+        brewedAfter.value = '2005-05'
+        brewedBefore.value = '2022-02'
+        let food = document.querySelectorAll('.radio-filter div input[name="food"]')
+        food.forEach(radio => {
+            radio.checked = false
+        })
+        resetSearch.style.display = 'none'
+        searchBar.value = ''
+        resetFilters.style.display = 'none'
+        showTableShowList()
+        
+        axios.get(`https://api.punkapi.com/v2/beers`)
+            .then(res => {
+                showTemplate(res.data)
+                addToCart(res.data)
+            })
+    })
 }

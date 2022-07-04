@@ -37,6 +37,7 @@
         <div class="content-cart-filters-div">
             <div class="cart">
                 <h5>MY CART</h5>
+                <span class="cart-placeholder">No products in the cart</span>
                 <div class="cart-prices"></div>
                 <p class="total"></p>
             </div>
@@ -53,10 +54,38 @@
                         data-cls-complete="bg-red"
                         class="ultra-thin cycle-marker"
                     >
-                    <button class="btn-filter">FILLTER</button>
                     <p class="show-price">Price: $0 - $60</p>
-                    <button class="reset"><i class="fa-solid fa-filter-circle-xmark"></i></button>
                 </div>
+                <div class="date-filter">
+                    <div>
+                        <input type="month" name="brewed-after" id="brewed-after">
+                        <label for="brewed-after">Brewed after</label>
+                    </div>
+                    <div>
+                        <input type="month" name="brewed-before" id="brewed-before">
+                        <label for="brewed-before">Brewed before</label>
+                    </div>
+                </div>
+                <div class="radio-filter">
+                    <div>
+                        <input type="radio" value="cheese" name="food" id="cheese">
+                        <label for="cheese">CHEESE</label>
+                    </div>
+                    <div>
+                        <input type="radio" value="salad" name="food" id="salad">
+                        <label for="salad">SALAD</label>
+                    </div>
+                    <div>
+                        <input type="radio" value="chicken" name="food" id="chicken">
+                        <label for="chicken">CHICKEN</label>
+                    </div>
+                    <div>
+                        <input type="radio" value="cake" name="food" id="cake">
+                        <label for="cake">CAKE</label>
+                    </div>
+                </div>
+                <button class="btn-filter">FILLTER</button>
+                <p class="reset">RESET</p>
             </div>
         </div>
 
@@ -84,9 +113,12 @@
         {{#each this}}
         <div class="beer-box">
             <img src={{this.image_url}} alt="beer">
-            <p class="price">${{this.abv}}</p>
-            <button class="add-to-cart">ADD TO CART</button>
-            <span>{{this.name}}</span>
+            <div class="beer-description">
+                <h3>{{this.name}}</h3> 
+                <p class="description-text">{{this.description}}</p>
+                <p class="price">${{this.abv}}</p>
+                <button class="add-to-cart">ADD TO CART</button>
+            </div>
         </div>
         {{/each}}
     </script>
@@ -95,7 +127,7 @@
     <!-- Handlebars cart template -->
     <script type="text/x-handlebars-template" id="template-cart">
         {{#each this}}
-            <p>{{this.name}} - {{this.selectedBeerQuantity}} ${{this.abv}} <i class="fa-solid fa-xmark deleteBeerIco"></i></p>
+            <p>{{this.name}} - {{this.selectedBeerQuantity}} x ${{this.abv}} <i class="fa-solid fa-xmark deleteBeerIco"></i></p>
         {{/each}}
     </script>
     <!--  -->
