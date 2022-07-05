@@ -103,14 +103,13 @@ function showTableShowList(){
     showTable.addEventListener('click', () => {
         contentItems.style.flexDirection = 'row'
         beerBox.forEach(box => {
-            console.log(box);
             box.style.flexDirection = 'column'
             box.style.width = '260px'
             box.style.justifyContent = 'center'
             box.style.padding = '0px'
         })
         beerBoxImg.forEach(img => {
-            img.style.marginTop = '25px'
+            img.style.marginTop = '15px'
             img.style.marginInline = '0px'
         })
         beerDescription.forEach(desc => {
@@ -157,7 +156,7 @@ function showTableShowList(){
             text.style.display = 'block'
         })
         beerPrice.forEach(price => {
-            price.style.color = 'black'
+            price.style.color = '#44322c'
         })
         addToCartBtn.forEach(btn => {
             btn.style.width = '170px'
@@ -174,8 +173,33 @@ function addToCart(data){
     let cartPrices = document.querySelector('.cart-prices')
     let total = cart.querySelector('.total')
 
-    let beersInCart = []
-    let totalPrice = 0
+    let beersInCart
+    let totalPrice
+
+    if(localStorage.getItem("totalPrice") === null){
+        totalPrice = 0
+    } else{
+        totalPrice = JSON.parse(localStorage.getItem("totalPrice"))
+    }
+    
+    if(localStorage.getItem("beersInCart") === null){
+        beersInCart = []
+    } else{
+        beersInCart = JSON.parse(localStorage.getItem("beersInCart"))
+    }
+
+    if(beersInCart.length < 1){
+        cartPlaceholder.innerText = 'No products in the cart'
+        total.innerText = ``
+    } else{
+        cartPlaceholder.innerText = ''
+        total.innerText = `TOTAL: $${totalPrice.toFixed(1)}`
+    }
+
+    showTemplateCart(JSON.parse(localStorage.getItem("beersInCart")))
+
+    localStorage.setItem('beersInCart', JSON.stringify(beersInCart))
+    localStorage.setItem('totalPrice', JSON.stringify(totalPrice))
     
     beerBox.forEach(beerDivItem => {
         beerDivItem.addEventListener('click', (e) => {
@@ -184,19 +208,30 @@ function addToCart(data){
                 let beerName = beerDivItem.children[1].children[0].innerText
                 data.forEach(beerData => {
                     if(beerName === beerData.name){
-                        if(beersInCart.includes(beerData)){
-                            beerData.selectedBeerQuantity = beerData.selectedBeerQuantity + 1
-                        } else{
-                            beersInCart.push(beerData)
+                        let isBeerInCart = false
+                        beersInCart.forEach(beer => {
+                            if(beer.name === beerData.name){
+                                beer.selectedBeerQuantity =  beer.selectedBeerQuantity + 1
+                                let price = beer.abv
+                                totalPrice += price
+                                isBeerInCart = true
+                            } 
+                        })
+                        if(isBeerInCart === false){
                             beerData.selectedBeerQuantity = 1
-                        }
-                        let price = beerData.abv
-                        totalPrice += price
+                            beersInCart.push(beerData)
+                            let price = beerData.abv
+                            totalPrice += price
+                        }      
+
+                        localStorage.setItem("beersInCart", JSON.stringify(beersInCart))
                     }
                 })
                 total.innerText = `TOTAL: $${totalPrice.toFixed(1)}`
             }      
-            showTemplateCart(beersInCart)
+
+            localStorage.setItem('totalPrice', JSON.stringify(totalPrice))
+            showTemplateCart(JSON.parse(localStorage.getItem("beersInCart")))
         })
     })
 
@@ -215,8 +250,9 @@ function addToCart(data){
             if(beersInCart.length === 1){
                 beersInCart.pop()
                 cartPlaceholder.innerText = 'No products in the cart'
+                total.innerText = ``
                 totalPrice = 0
-                total.innerText = ''
+                localStorage.setItem('totalPrice', JSON.stringify(totalPrice))
             } else{
                 beersInCart.forEach(beer => {
                     if(beer.name === delItemName){
@@ -224,9 +260,12 @@ function addToCart(data){
                         total.innerText = `TOTAL: $${totalPrice.toFixed(1)}`
                         beer.selectedBeerQuantity = 1
                         beersInCart.splice(beersInCart.indexOf(beer), 1)
+                        localStorage.setItem('totalPrice', JSON.stringify(totalPrice))
                     }
                 })
             }  
+
+            localStorage.setItem("beersInCart", JSON.stringify(beersInCart))
         }
     })
 }
@@ -285,18 +324,16 @@ function filter(){
     let resetFilters = document.querySelector('.reset')
     let searchBar = document.querySelector('input[type="search"]')
     let resetSearch = document.querySelector('.reset-search')
-    brewedAfter.value = '2005-05'
-    brewedBefore.value = '2022-02'
     
     filterBtn.addEventListener('click', () => {
         resetFilters.style.display = 'block'
 
         let after = brewedAfter.value
         let before = brewedBefore.value
-        afterYear = after.substring(0, 4)
-        afterMonth = after.substring(5)
-        beforeYear = before.substring(0, 4)
-        beforeMonth = before.substring(5)
+        let afterYear = after.substring(0, 4)
+        let afterMonth = after.substring(5, 7)
+        let beforeYear = before.substring(0, 4)
+        let beforeMonth = before.substring(5, 7)
         let pickedFood = ''
         
         let food = document.querySelectorAll('.radio-filter div input[name="food"]')
@@ -357,8 +394,6 @@ function filter(){
         let showPrice = document.querySelector('.show-price')
         priceSlider.value = '0, 60'
         showPrice.innerHTML = `Price: $0 - $60`
-        brewedAfter.value = '2005-05'
-        brewedBefore.value = '2022-02'
         let food = document.querySelectorAll('.radio-filter div input[name="food"]')
         food.forEach(radio => {
             radio.checked = false
@@ -366,12 +401,11 @@ function filter(){
         resetSearch.style.display = 'none'
         searchBar.value = ''
         resetFilters.style.display = 'none'
-        showTableShowList()
-        
         axios.get(`https://api.punkapi.com/v2/beers`)
             .then(res => {
                 showTemplate(res.data)
                 addToCart(res.data)
+                showTableShowList()
             })
     })
 }

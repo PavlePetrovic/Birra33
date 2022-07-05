@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Birra33</title>
     <link rel="icon" href="./img/logo-ico.png">
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
     <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -42,46 +43,46 @@
                 <p class="total"></p>
             </div>
             <div class="filters">
+                <h5>SEARCH FILTER</h5>
+                <div class="search-filter">
+                    <input type="search" placeholder="Search beers">
+                    <div class="reset-search"><i class="fa-solid fa-xmark"></i></div>
+                    <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <div id="snackbar"></div>
+                </div>
+                <h5>PRICE FILTER</h5>
                 <div class="price-filter">
-                    <h5>PRICE FILTER</h5>
-                    <input 
-                        id="price-slider"
-                        data-role="doubleslider"
-                        data-min="0" 
-                        data-max="60"
-                        data-hint="true"
-                        data-cls-hint="bg-red fg-white"
-                        data-cls-complete="bg-red"
-                        class="ultra-thin cycle-marker"
-                    >
+                    <input id="price-slider" data-role="doubleslider" data-min="0" data-max="60" data-hint="true" data-cls-hint="bg-red fg-white" data-cls-complete="bg-red" class="ultra-thin cycle-marker">
                     <p class="show-price">Price: $0 - $60</p>
                 </div>
+                <h5>DATE FILTER</h5>
                 <div class="date-filter">
-                    <div>
-                        <input type="month" name="brewed-after" id="brewed-after">
+                    <div class="date-filter-div">
+                        <input data-role="datepicker" data-day="false" id="brewed-after">
                         <label for="brewed-after">Brewed after</label>
                     </div>
-                    <div>
-                        <input type="month" name="brewed-before" id="brewed-before">
+                    <div class="date-filter-div">
+                        <input data-role="datepicker" data-day="false"  id="brewed-before">
                         <label for="brewed-before">Brewed before</label>
                     </div>
                 </div>
+                <h5>FOOD FILTER</h5>
                 <div class="radio-filter">
                     <div>
                         <input type="radio" value="cheese" name="food" id="cheese">
-                        <label for="cheese">CHEESE</label>
+                        <label for="cheese">Cheese</label>
                     </div>
                     <div>
                         <input type="radio" value="salad" name="food" id="salad">
-                        <label for="salad">SALAD</label>
+                        <label for="salad">Salad</label>
                     </div>
                     <div>
                         <input type="radio" value="chicken" name="food" id="chicken">
-                        <label for="chicken">CHICKEN</label>
+                        <label for="chicken">Chicken</label>
                     </div>
                     <div>
                         <input type="radio" value="cake" name="food" id="cake">
-                        <label for="cake">CAKE</label>
+                        <label for="cake">Cake</label>
                     </div>
                 </div>
                 <button class="btn-filter">FILLTER</button>
@@ -95,10 +96,6 @@
                     <i class="fa-solid fa-table-cells show-table"></i>
                     <i class="fa-solid fa-list show-list"></i>
                 </div>
-                <input type="search" placeholder="Search beers">
-                <div class="reset-search"><i class="fa-solid fa-xmark"></i></div>
-                <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <div id="snackbar"></div>
             </div>
 
             <div class="content-items">
@@ -132,7 +129,11 @@
     </script>
     <!--  -->
 
+    <!-- <script type="text/javascript" src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script> -->
+    <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
     <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js"  type="module"></script>
 </body>
 </html>

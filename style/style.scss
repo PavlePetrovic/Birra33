@@ -1,3 +1,5 @@
+// @import '~js-datepicker/src/datepicker';
+
 *{
     box-sizing: border-box;
     padding: 0;
@@ -51,7 +53,6 @@ header{
     }
 }
 
-
 .content{
     display: flex;
     justify-content: center;
@@ -71,12 +72,12 @@ header{
             min-height: 200px;
 
             .cart-placeholder{
-                color: black;
+                color: #44322c;
                 font-size: 15px;
             }
 
             p{
-                color: black;
+                color: #44322c;
                 font-size: 14px;
                 text-align: right;
 
@@ -98,48 +99,138 @@ header{
             padding-top: 40px;
             display: flex;
             flex-direction: column;
-            padding-bottom: 50px;
+            padding-bottom: 40px;
 
-            .price-filter{
-                padding-inline: 20px;
+            h5{
+                color: #BF431F;
+                letter-spacing: 0.5px;
+                padding-left: 20px;
+            }
 
-                h5{
-                    color: #BF431F;
-                    letter-spacing: 0.5px;
+            .search-filter{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding-top: 15px;
+                padding-bottom: 25px;
+
+                .reset-search{
+                    display: none;
+                    
+                    i{
+                        margin-left: -30px;
+                        color: #44322c;
+                        padding-block: 8px;
+                        border: none;
+                        font-size: 16px;
+                        cursor: pointer;
+                    }
                 }
                 
+                input[type="search"]{
+                    width: 165px;
+                    padding: 5px;
+                    border: none;
+                    outline: none !important;
+                    font-size: 14px;
+                    background-color: transparent;
+                    border-bottom: 1px solid #44322c;
+                    margin-right: 8px;
+                    color: #44322c;
+                    &:focus{
+                        box-shadow: none;
+                    }
+                }
+
+                i{
+                    color: #44322c;
+                    padding-inline: 2px;
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+    
+                button{
+                    border: none;
+                    padding: 5px;
+                    font-size: 20px;
+                    background-color: transparent;
+                    color: #44322c;
+                    cursor: pointer;
+                }
+    
+                #snackbar {
+                    visibility: hidden;
+                    font-size: 12.33px;
+                    background-color: #44322c;
+                    color: #E3CFAB;
+                    text-align: center;
+                    padding-inline: 10px;
+                    padding-block: 5px;
+                    position: absolute;
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                    top: -10px;
+                    right: 0;
+                    opacity: 0;
+                    z-index: 2;
+                }
+    
+                #snackbar.show {
+                    visibility: visible;
+                    opacity: 1;
+                    transition: 0.2s;
+                }
+            }
+
+            .price-filter{
+                margin-top: 15px;
+                padding-inline: 20px;
+                margin-bottom: 25px;
+
+                .slider .marker{
+                    background-color: #44322c;
+                }
+                
+                div.complete.bg-red{
+                    background-color: #BF431F !important;
+                }
+
                 p{
                     font-size: 13px;
                     text-align: right;
                     margin-top: 12px;
+                    color: #44322c;
                 }
             }
 
             .date-filter{
                 display: flex;
-                gap: 10px;
                 align-items: center;
                 justify-content: center;
+                margin-top: 5px;
+                margin-bottom: 20px;
+                flex-direction: column;
 
-                div{
-                    margin-top: 30px;
+                .date-filter-div{
+                    margin-top: 15px;
                     display: flex;
                     flex-direction: column;
 
-                    input{
-                        width: 100px;
-                        background-color: #F4E8CE;
-                        color: black;
-                        border: none;
-                        padding: 2px;
-                        padding-left: 15px;
+                    .wheel-picker{
+                        background-color: #44322c27
+                    }
+
+                    .date-picker .date-wrapper{
+                        border: 1px solid #44322c;
+                        cursor: pointer;
+                        color: #44322c
                     }
 
                     label{
-                        padding-top: 2px;
-                        color: #BF431F;
-                        font-size: 13px;
+                        padding-top: 10px;
+                        font-size: 14px;
                         text-align: center;
+                        color: #44322c;
                     }
                 }
             }
@@ -147,7 +238,8 @@ header{
             .radio-filter{
                 display: flex;
                 flex-direction: column;
-                padding: 20px;
+                padding-block: 15px;
+                padding-inline: 20px;
                 gap: 10px;
 
                 div{
@@ -159,6 +251,7 @@ header{
 
                     label{
                         cursor: pointer;
+                        color: #44322c;
                     }
                 }
             }
@@ -171,7 +264,7 @@ header{
                 padding-block: 8px;
                 width: 92px;
                 border: none;
-                margin-top: 5px;
+                margin-top: 25px;
                 font-size: 13px;
                 letter-spacing: 0.5px;
                 cursor: pointer;
@@ -218,59 +311,6 @@ header{
                     cursor: pointer;
                 }
             }
-
-            .reset-search{
-                display: none;
-                
-                i{
-                    margin-left: -30px;
-                    color: #BF431F;
-                    padding-block: 8px;
-                    border: none;
-                    font-size: 16px;
-                    cursor: pointer;
-                }
-            }
-            
-            input[type="search"]{
-                padding: 5px;
-                border: none;
-                outline: none;
-                font-size: 14px;
-                background-color: transparent;
-                border-bottom: 1px solid #BF431F;
-                margin-right: 8px;
-                color: #BF431F;
-            }
-
-            button{
-                border: none;
-                padding: 5px;
-                font-size: 20px;
-                background-color: transparent;
-                color: #BF431F;
-                cursor: pointer;
-            }
-
-            #snackbar {
-                visibility: hidden;
-                font-size: 12.33px;
-                background-color: #BF431F;
-                color: #E3CFAB;
-                text-align: center;
-                padding: 10px;
-                position: absolute;
-                border-bottom-left-radius: 10px;
-                top: -14px;
-                right: -55px;
-                opacity: 0;
-            }
-
-            #snackbar.show {
-                visibility: visible;
-                opacity: 1;
-                transition: 0.2s;
-            }
         }
 
         .content-items{
@@ -291,7 +331,7 @@ header{
 
                 img{
                     width: 80px;
-                    height: 300px;
+                    height: 280px;
                     margin-top: 15px;
                     margin-inline: 0px;
                 }
@@ -306,12 +346,14 @@ header{
                     h3{
                         display: none;
                         margin-bottom: 0px;
+                        color: #44322c;
                     }
 
                     .description-text{
                         display: none;
                         font-size: 14px;
                         margin-bottom: 0px;
+                        color: #44322c;
                     }
 
                     .price{
