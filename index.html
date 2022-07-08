@@ -96,10 +96,20 @@
                     <i class="fa-solid fa-table-cells show-table"></i>
                     <i class="fa-solid fa-list show-list"></i>
                 </div>
+                <select name="selectView" id="selectView">
+                    <option value="10">Per page: 10</option>
+                    <option value="20">Per page: 20</option>
+                    <option value="30">Per page: 30</option>
+                </select>
             </div>
 
-            <div class="content-items">
-
+            <div class="content-items"></div>
+            <div class="navigate-arrows">
+                <i class="fa-solid fa-angle-left" id="left"></i>
+                <span id="page-1" class="clicked">1</span>
+                <span id="page-2">2</span>
+                <span id="page-3">3</span>
+                <i class="fa-solid fa-angle-right" id="right"></i>
             </div>
         </div>
     </section>
@@ -108,15 +118,43 @@
     <!-- Handlebars template -->
     <script type="text/x-handlebars-template" id="template">
         {{#each this}}
-        <div class="beer-box">
-            <img src={{this.image_url}} alt="beer">
-            <div class="beer-description">
-                <h3>{{this.name}}</h3> 
-                <p class="description-text">{{this.description}}</p>
-                <p class="price">${{this.abv}}</p>
-                <button class="add-to-cart">ADD TO CART</button>
+        <div class="beer-box beer-box-grid">
+            <img src={{this.image_url}} alt="beer" class="img-grid">
+            <div class="beer-description beer-description-grid">
+                <h3 class="h3-grid">{{this.name}}</h3> 
+                <p class="description-text description-text-grid">{{this.description}}</p>
+                <p class="price price-grid">${{this.abv}}</p>
+                <button class="add-to-cart add-to-cart-grid">ADD TO CART</button>
             </div>
         </div>
+        <div id="modal" class="modal">
+            <span class="dont-show-beer-name">{{this.name}}</span>
+            <div class="modal-content">
+                <img src={{this.image_url}} alt="beer">
+                <div class="modal-beer-content-description">
+                    <!-- <span class="close">&times;</span> -->
+                    <h3>{{this.name}}</h3>
+                    <p>{{this.description}}</p> 
+                    <div class="modal-buy-beer">
+                        <div class="modal-buy-beer-input-div">
+                            <input type="text" id="quantity" name="quantity">
+                            <div class="modal-buy-beer-input-quantity">
+                                <span id="quantity-up"><i class="fa-solid fa-angle-up"></i></span>
+                                <span id="quantity-down"><i class="fa-solid fa-angle-down"></i></span>
+                            </div>
+                        </div>
+                        <button class="add-in-cart-modal">ADD TO CART</button>
+                    </div>
+                    <span class="line"></span>
+                    <h5>Best with:</h5>
+                    <div class="modal-ingredients">
+                        {{#each this.food_pairing}}
+                            <span>{{this}} /</span>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+          </div>
         {{/each}}
     </script>
     <!--  -->
@@ -129,11 +167,8 @@
     </script>
     <!--  -->
 
-    <!-- <script type="text/javascript" src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script> -->
     <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
     <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
-    <script src="script.js"  type="module"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -58,6 +58,7 @@ header{
     justify-content: center;
     padding-block: 50px;
     gap: 30px;
+    margin-right: -20px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
     .content-cart-filters-div{
@@ -187,8 +188,13 @@ header{
                 padding-inline: 20px;
                 margin-bottom: 25px;
 
+                .slider .complete{
+                    z-index: 1;
+                }
+
                 .slider .marker{
                     background-color: #44322c;
+                    z-index: 2;
                 }
                 
                 div.complete.bg-red{
@@ -217,7 +223,7 @@ header{
                     flex-direction: column;
 
                     .wheel-picker{
-                        background-color: #44322c27
+                        background-color: #44322c27;
                     }
 
                     .date-picker .date-wrapper{
@@ -299,7 +305,6 @@ header{
             height: 60px;
             display: flex;
             align-items: center;
-            padding-inline: 30px;
             
             .content-navbar-icons{
                 margin-right: auto;
@@ -311,6 +316,15 @@ header{
                     cursor: pointer;
                 }
             }
+
+            select{
+                width: 123px;
+                border: none;
+                outline: none;
+                background-color: #BF431F;
+                color: #F4E8CE;
+                font-size: 15px;
+            }
         }
 
         .content-items{
@@ -319,8 +333,9 @@ header{
             gap: 30px;
             flex-wrap: wrap;
             flex-direction: row;
+            position: relative;
 
-            .beer-box{
+            .beer-box-grid{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -329,39 +344,39 @@ header{
                 width: 260px;
                 background-color: #E3CFAB;
 
-                img{
+                .img-grid{
                     width: 80px;
                     height: 280px;
                     margin-top: 15px;
                     margin-inline: 0px;
                 }
 
-                .beer-description{
+                .beer-description-grid{
                     display: flex;
                     flex-direction: column;
                     width: 260px;
                     align-items: center;
                     padding-left: 0px;
 
-                    h3{
+                    .h3-grid{
                         display: none;
                         margin-bottom: 0px;
                         color: #44322c;
                     }
 
-                    .description-text{
+                    .description-text-grid{
                         display: none;
                         font-size: 14px;
                         margin-bottom: 0px;
                         color: #44322c;
                     }
 
-                    .price{
+                    .price-grid{
                         color: #BF431F;
                         padding-bottom: 10px;
                     }
     
-                    .add-to-cart{
+                    .add-to-cart-grid{
                         color: #E3CFAB;
                         width: 100%;
                         margin-top: 0px;
@@ -376,6 +391,237 @@ header{
                     }
                 }
             }
+
+            .beer-box-list{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                padding: 25px;
+                width: 100%;
+                background-color: #E3CFAB;
+
+                .img-list{
+                    width: 80px;
+                    height: 280px;
+                    margin-top: 0px;
+                    margin-inline: 60px;
+                }
+
+                .beer-description-list{
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    align-items: flex-start;
+                    padding-left: 25px;
+
+                    .h3-list{
+                        display: block;
+                        margin-bottom: 0px;
+                        color: #44322c;
+                    }
+
+                    .description-text-list{
+                        display: block;
+                        font-size: 14px;
+                        margin-bottom: 0px;
+                        color: #44322c;
+                    }
+
+                    .price-list{
+                        color: #44322c;
+                        padding-bottom: 10px;
+                    }
+    
+                    .add-to-cart-list{
+                        color: #E3CFAB;
+                        width: 170px;
+                        margin-top: 5px;
+                        padding-block: 15px;
+                        border: none;
+                        background-color: #D57F2C;
+                        cursor: pointer;
+                        &:hover{
+                            background-color: #BF431F;
+                            transition: 0.2s;
+                        }
+                    }
+                }
+            }
+
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 3; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+                .dont-show-beer-name{
+                    display: none;
+                }
+
+                /* Modal Content/Box */
+                .modal-content {
+                    background-color: #F4E8CE;
+                    margin: 10% auto; /* 15% from the top and centered */
+                    padding: 20px;
+                    border: none;
+                    width: 1000px; /* Could be more or less, depending on screen size */
+                    height: 500px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    /* The Close Button */
+                    // .close {
+                    //     align-self: flex-end;
+                    //     color: #44322c;
+                    //     float: right;
+                    //     font-size: 28px;
+                    //     font-weight: bold;
+                    //     margin-top: -55px;
+                    // }
+                    
+                    // .close:hover,
+                    // .close:focus {
+                    //     color: #BF431F;
+                    //     text-decoration: none;
+                    //     cursor: pointer;
+                    // }
+
+                    img{
+                        width: 80px;
+                        height: 280px;
+                        margin-inline: 80px;
+                        margin-block: 20px;
+                    }
+
+                    .modal-beer-content-description{
+                        padding-right: 30px;
+
+                        h3{
+                            margin-bottom: 30px;
+                        }
+
+                        h3, p, h5{
+                            color: #44322c;
+                        }
+
+                        .modal-buy-beer{
+                            display: flex;
+                            margin-top: 30px;
+
+                            .modal-buy-beer-input-div{
+                                width: 100px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+
+                                input{
+                                    height: 46px;
+                                    background-color: #D57F2C;
+                                    border: none;
+                                    outline: none;
+                                    color: #F4E8CE;
+                                    padding-left: 40px;
+                                }
+
+                                .modal-buy-beer-input-quantity{
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: center;
+
+                                    span{
+                                        background-color: #D57F2C;
+                                        color: #F4E8CE;
+                                        border: none;
+                                        height: 23px;
+                                        font-size: 14px;
+                                        cursor: pointer;
+                                        padding-right: 10px;
+                                    }
+                                }
+                            }
+
+                            button{
+                                height: 46px;
+                                margin-left: 10px;
+                                padding-inline: 40px;
+                                border: none;
+                                font-size: 14px;
+                                outline: none;
+                                background-color: #44322c;
+                                color: #F4E8CE;
+                                cursor: pointer;
+                                &:hover{
+                                    transition: 0.2s;
+                                    background-color: #BF431F;
+                                }
+                            }
+                        }
+
+                        .line{
+                            margin-top: 20px;
+                            display: block;
+                            width: 100%;
+                            height: 1px;
+                            background-color: #44322c;
+                        }
+
+                        h5{
+                            margin-bottom: 5px;
+                            font-size: 1.1rem;
+                        }
+
+                        .modal-ingredients{
+                        
+                            span{
+                                color: #BF431F;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .navigate-arrows{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 20px;
+            gap: 10px;
+            font-size: 20px;
+
+            #left{
+                margin-right: 15px;
+                color: #BF431F;
+                cursor: pointer;
+            }
+
+            span{
+                color: #44322c;
+                cursor: pointer;
+            }
+
+            .clicked{
+                border-bottom: 1px solid #BF431F;
+            }
+
+            #right{
+                margin-left: 15px;
+                color: #BF431F;
+                cursor: pointer;
+            }
         }
     }
 }
+
+// MEDIA QUERIES
+@import "./_media1170.scss";
