@@ -1,0 +1,132 @@
+@media only screen and (max-width: 890px) {
+
+    .content{
+        flex-direction: column;
+        align-items: center;
+        margin-right: 0px;
+        .content-cart-filters-div{
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .show-cart, .show-filters{
+                display: block;
+                width: 100%;
+                border: none;
+                outline: none;
+                background-color: #BF431F;
+                color: #F4E8CE;
+                padding-block: 8px;
+                cursor: pointer;
+                i{
+                    font-size: 15px;
+                    margin-left: 2px;
+                }
+            }
+            .show-filters{
+                margin-top: 10px;
+            }
+            .cart{
+                display: none;
+            }
+            .filters{
+                margin-top: 0px;
+                .search-filter{
+                    input[type="search"]{
+                        width: 300px;
+                    }
+                    i{
+                        font-size: 17px;
+                    }
+                }
+                .price-filter{ 
+                    padding-inline: 85px;
+                    p{
+                        text-align: center;
+                    }
+                }
+                .date-filter{
+                    .date-filter-div{
+                        width: 270px;
+                        .wheel-picker{
+                            width: 270px;
+                        }
+                        .date-picker .date-wrapper{
+                            width: 270px;
+                            font-size: 14.5px;
+                        }
+                        label{
+                            font-size: 14px;
+                        }
+                    }
+                }
+                .radio-filter{
+                    margin-left: 10px;
+                }
+                .btn-filter{
+                    padding-block: 10px;
+                    width: 140px;
+                    font-size: 14px;
+                }
+            }
+            .toggle-cart{ 
+                display: block;
+            }
+            .toggle-filters{
+                display: none;
+            }
+        }
+        .content-main{
+            .content-items{
+                .modal{
+                    .modal-content{
+                        width: 600px;
+                        height: auto;
+                        padding-block: 30px;
+                        img{
+                            width: 60px;
+                            height: 180px;
+                            margin-inline: 60px;
+                        }
+                        .modal-beer-content-description{
+                            h3{
+                                font-size: 22px;
+                            }
+                            p{
+                                font-size: 13px;
+                            }
+                            .modal-buy-beer{
+                                margin-top: 15px;
+                                .modal-buy-beer-input-div{
+                                    width: 60px;
+                                    font-size: 13px;
+                                    input{
+                                        height: 34px;
+                                        padding-left: 18px;
+                                    }
+                                    .modal-buy-beer-input-quantity{
+                                        span{
+                                            height: 17px;
+                                            font-size: 12px;
+                                        }
+                                    }
+                                }
+                                button{
+                                    height: 34px;
+                                }
+                            }
+                            .modal-ingredients{
+                                line-height: 12px;
+                                span{
+                                    font-size: 11px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

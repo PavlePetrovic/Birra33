@@ -1,5 +1,3 @@
-// @import '~js-datepicker/src/datepicker';
-
 *{
     box-sizing: border-box;
     padding: 0;
@@ -64,6 +62,10 @@ header{
     .content-cart-filters-div{
         width: 250px;
         
+        .show-cart, .show-filters{
+            display: none;
+        }
+
         .cart{
             padding-block: 30px;
             padding-inline: 20px;
@@ -450,49 +452,31 @@ header{
             }
 
             .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 3; /* Sit on top */
+                display: none;
+                position: fixed;
+                z-index: 3;
                 left: 0;
                 top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0,0,0); /* Fallback color */
-                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                width: 100%;
+                height: 100%;
+                overflow: auto; 
+                background-color: rgb(0,0,0);
+                background-color: rgba(0,0,0,0.4);
 
                 .dont-show-beer-name{
                     display: none;
                 }
 
-                /* Modal Content/Box */
                 .modal-content {
                     background-color: #F4E8CE;
-                    margin: 10% auto; /* 15% from the top and centered */
+                    margin: 10% auto; // 10% from top
                     padding: 20px;
                     border: none;
-                    width: 1000px; /* Could be more or less, depending on screen size */
+                    width: 1000px;
                     height: 500px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-
-                    /* The Close Button */
-                    // .close {
-                    //     align-self: flex-end;
-                    //     color: #44322c;
-                    //     float: right;
-                    //     font-size: 28px;
-                    //     font-weight: bold;
-                    //     margin-top: -55px;
-                    // }
-                    
-                    // .close:hover,
-                    // .close:focus {
-                    //     color: #BF431F;
-                    //     text-decoration: none;
-                    //     cursor: pointer;
-                    // }
 
                     img{
                         width: 80px;
@@ -625,3 +609,5 @@ header{
 
 // MEDIA QUERIES
 @import "./_media1170.scss";
+@import "./media890.scss";
+@import "./media660.scss";

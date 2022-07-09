@@ -156,9 +156,53 @@
                 }
                 .modal{
                     .modal-content{
+                        padding: 2px;
                         margin: 15% auto;
                         width: 780px;
                         height: 400px;
+                        img{
+                            width: 70px;
+                            height: 210px;
+                        }
+                        .modal-beer-content-description{
+                            padding-right: 20px;
+                            h3{
+                                font-size: 24px;
+                                margin-bottom: 20px;
+                            }
+                            p{
+                                font-size: 14px;
+                            }
+                            .modal-buy-beer{
+                                margin-top: 20px;
+                                .modal-buy-beer-input-div{
+                                    width: 80px;
+                                    font-size: 14px;
+                                    input{
+                                        height: 38px;
+                                        padding-left: 30px;
+                                    }
+                                    .modal-buy-beer-input-quantity{
+                                        span{
+                                            height: 19px;
+                                            font-size: 12px;
+                                        }
+                                    }
+                                }
+                                button{
+                                    height: 38px;
+                                    padding-inline: 25px;
+                                }
+                            }
+                            h5{
+                                font-size: 1rem;
+                            }
+                            .modal-ingredients{
+                                span{
+                                    font-size: 12px;
+                                }
+                            }
+                        }
                     }
                 }
             }

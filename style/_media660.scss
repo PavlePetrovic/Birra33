@@ -1,0 +1,179 @@
+@media only screen and (max-width: 660px) {
+
+    header{
+        padding-block: 10px;
+        #logo-img{
+            margin-left: 30px;
+            width: 100px;
+        }
+        nav{
+            margin-right: 10px;
+            ul{
+                li{
+                    a{
+                        font-size: 13px;
+                        padding-inline: 8px;
+                    }
+                }
+            }
+        }
+    }
+    .content{
+        padding-block: 30px;
+        .content-cart-filters-div{
+            width: 350px;
+            .show-cart, .show-filters{
+                padding-block: 6px;
+                font-size: 15px;
+                i{
+                    font-size: 14px;
+                }
+            }
+            .filters{
+                .search-filter{
+                    input[type="search"]{
+                        width: 250px;
+                    }
+                    i{
+                        font-size: 17px;
+                    }
+                }
+                .price-filter{ 
+                    padding-inline: 38px;
+                    p{
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        .content-main{
+            gap: 10px;
+            .content-navbar{
+                width: 350px;
+                height: 50px;
+                .content-navbar-icons{
+                    margin-right: auto;
+                    i{
+                        font-size: 18px;
+                    }
+                }
+                select{
+                    font-size: 13px;
+                    width: 110px;
+                    height: 32px;
+                }
+            }
+            .content-items{
+                max-width: 350px;
+                gap: 15px;
+                .beer-box-grid{
+                    width: 167px;
+                    .img-grid{
+                        width: 40px;
+                        height: 140px;
+                    }
+                    .beer-description-grid{
+                        width: 167px;
+                        .price-grid{
+                            margin-top: 10px;
+                            padding-bottom: 8px;
+                            font-size: 14px;
+                        }
+                        .add-to-cart-grid{
+                            padding-block: 10px;
+                            font-size: 13px;
+                        }
+                    }
+                }
+                .beer-box-list{
+                    .img-list{
+                        width: 40px;
+                        height: 140px;
+                        margin-inline: 20px;
+                    }
+                    .beer-description-list{
+                        .h3-list{
+                            font-size: 18px;
+                        }
+                        .description-text-list{
+                            font-size: 12px;
+                        }
+                        .price-list{
+                            margin-top: 10px;
+                            padding-bottom: 8px;
+                            font-size: 14px;
+                        }
+                        .add-to-cart-list{
+                            padding-block: 7px;
+                            width: 110px;
+                            font-size: 12px;
+                        }
+                    }
+                }
+                .modal{
+                    .modal-content{
+                        padding-block: 15px;
+                        margin: 40% auto;
+                        width: 350px;
+                        height: auto;
+                        img{
+                            width: 40px;
+                            height: 140px;
+                            margin-inline: 30px;
+                            margin-block: 10px;
+                        }
+                        .modal-beer-content-description{
+                            padding-right: 12px;
+                            h3{
+                                font-size: 18px;
+                                margin-bottom: 0px;
+                            }
+                            p{
+                                font-size: 11px;
+                            }
+                            .modal-buy-beer{
+                                margin-top: 10px;
+                                .modal-buy-beer-input-div{
+                                    width: 55px;
+                                    font-size: 11px;
+                                    input{
+                                        height: 30px;
+                                        padding-left: 10px;
+                                        font-size: 12px;
+                                    }
+                                    .modal-buy-beer-input-quantity{
+                                        span{
+                                            height: 15px;
+                                            font-size: 11px;
+                                        }
+                                    }
+                                }
+                                button{
+                                    height: 30px;
+                                    padding-inline: 15px;
+                                    font-size: 11px;
+                                }
+                            }
+                            .line{
+                                margin-top: 10px;
+                            }
+                            h5{
+                                margin-top: 8px;
+                                font-size: 0.8rem;
+                            }
+                            .modal-ingredients{
+                                span{
+                                    font-size: 9px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .navigate-arrows{
+                font-size: 18px;
+            }
+        }
+    }
+
+}

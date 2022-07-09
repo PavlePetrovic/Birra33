@@ -36,12 +36,14 @@
     <!-- Site content -->
     <section class="content">
         <div class="content-cart-filters-div">
+            <button class="show-cart">CART <i class="fa-solid fa-cart-shopping"></i></button>
             <div class="cart">
                 <h5>MY CART</h5>
                 <span class="cart-placeholder">No products in the cart</span>
                 <div class="cart-prices"></div>
                 <p class="total"></p>
             </div>
+            <button class="show-filters">FILTERS <i class="fa-solid fa-filter"></i></button>
             <div class="filters">
                 <h5>SEARCH FILTER</h5>
                 <div class="search-filter">
@@ -85,7 +87,7 @@
                         <label for="cake">Cake</label>
                     </div>
                 </div>
-                <button class="btn-filter">FILLTER</button>
+                <button class="btn-filter">FILTER</button>
                 <p class="reset">RESET</p>
             </div>
         </div>
@@ -132,7 +134,6 @@
             <div class="modal-content">
                 <img src={{this.image_url}} alt="beer">
                 <div class="modal-beer-content-description">
-                    <!-- <span class="close">&times;</span> -->
                     <h3>{{this.name}}</h3>
                     <p>{{this.description}}</p> 
                     <div class="modal-buy-beer">

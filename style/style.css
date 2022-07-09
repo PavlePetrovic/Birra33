@@ -77,6 +77,10 @@ header nav ul li a:hover {
   width: 250px;
 }
 
+.content .content-cart-filters-div .show-cart, .content .content-cart-filters-div .show-filters {
+  display: none;
+}
+
 .content .content-cart-filters-div .cart {
   padding-block: 30px;
   padding-inline: 20px;
@@ -551,24 +555,15 @@ header nav ul li a:hover {
 
 .content .content-main .content-items .modal {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 3;
-  /* Sit on top */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: black;
-  /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
-  /* Modal Content/Box */
 }
 
 .content .content-main .content-items .modal .dont-show-beer-name {
@@ -578,11 +573,9 @@ header nav ul li a:hover {
 .content .content-main .content-items .modal .modal-content {
   background-color: #F4E8CE;
   margin: 10% auto;
-  /* 15% from the top and centered */
   padding: 20px;
   border: none;
   width: 1000px;
-  /* Could be more or less, depending on screen size */
   height: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -593,7 +586,6 @@ header nav ul li a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  /* The Close Button */
 }
 
 .content .content-main .content-items .modal .modal-content img {
@@ -883,9 +875,340 @@ header nav ul li a:hover {
     font-size: 14px;
   }
   .content .content-main .content-items .modal .modal-content {
+    padding: 2px;
     margin: 15% auto;
     width: 780px;
     height: 400px;
+  }
+  .content .content-main .content-items .modal .modal-content img {
+    width: 70px;
+    height: 210px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description {
+    padding-right: 20px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description p {
+    font-size: 14px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer {
+    margin-top: 20px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer .modal-buy-beer-input-div {
+    width: 80px;
+    font-size: 14px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer .modal-buy-beer-input-div input {
+    height: 38px;
+    padding-left: 30px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer .modal-buy-beer-input-div .modal-buy-beer-input-quantity span {
+    height: 19px;
+    font-size: 12px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer button {
+    height: 38px;
+    padding-inline: 25px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description h5 {
+    font-size: 1rem;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-ingredients span {
+    font-size: 12px;
+  }
+  .content .content-main .navigate-arrows {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 890px) {
+  .content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-right: 0px;
+  }
+  .content .content-cart-filters-div {
+    width: 500px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .content .content-cart-filters-div .show-cart, .content .content-cart-filters-div .show-filters {
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #BF431F;
+    color: #F4E8CE;
+    padding-block: 8px;
+    cursor: pointer;
+  }
+  .content .content-cart-filters-div .show-cart i, .content .content-cart-filters-div .show-filters i {
+    font-size: 15px;
+    margin-left: 2px;
+  }
+  .content .content-cart-filters-div .show-filters {
+    margin-top: 10px;
+  }
+  .content .content-cart-filters-div .cart {
+    display: none;
+  }
+  .content .content-cart-filters-div .filters {
+    margin-top: 0px;
+  }
+  .content .content-cart-filters-div .filters .search-filter input[type="search"] {
+    width: 300px;
+  }
+  .content .content-cart-filters-div .filters .search-filter i {
+    font-size: 17px;
+  }
+  .content .content-cart-filters-div .filters .price-filter {
+    padding-inline: 85px;
+  }
+  .content .content-cart-filters-div .filters .price-filter p {
+    text-align: center;
+  }
+  .content .content-cart-filters-div .filters .date-filter .date-filter-div {
+    width: 270px;
+  }
+  .content .content-cart-filters-div .filters .date-filter .date-filter-div .wheel-picker {
+    width: 270px;
+  }
+  .content .content-cart-filters-div .filters .date-filter .date-filter-div .date-picker .date-wrapper {
+    width: 270px;
+    font-size: 14.5px;
+  }
+  .content .content-cart-filters-div .filters .date-filter .date-filter-div label {
+    font-size: 14px;
+  }
+  .content .content-cart-filters-div .filters .radio-filter {
+    margin-left: 10px;
+  }
+  .content .content-cart-filters-div .filters .btn-filter {
+    padding-block: 10px;
+    width: 140px;
+    font-size: 14px;
+  }
+  .content .content-cart-filters-div .toggle-cart {
+    display: block;
+  }
+  .content .content-cart-filters-div .toggle-filters {
+    display: none;
+  }
+  .content .content-main .content-items .modal .modal-content {
+    width: 600px;
+    height: auto;
+    padding-block: 30px;
+  }
+  .content .content-main .content-items .modal .modal-content img {
+    width: 60px;
+    height: 180px;
+    margin-inline: 60px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description h3 {
+    font-size: 22px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description p {
+    font-size: 13px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer {
+    margin-top: 15px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer .modal-buy-beer-input-div {
+    width: 60px;
+    font-size: 13px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer .modal-buy-beer-input-div input {
+    height: 34px;
+    padding-left: 18px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer .modal-buy-beer-input-div .modal-buy-beer-input-quantity span {
+    height: 17px;
+    font-size: 12px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer button {
+    height: 34px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-ingredients {
+    line-height: 12px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-ingredients span {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  header {
+    padding-block: 10px;
+  }
+  header #logo-img {
+    margin-left: 30px;
+    width: 100px;
+  }
+  header nav {
+    margin-right: 10px;
+  }
+  header nav ul li a {
+    font-size: 13px;
+    padding-inline: 8px;
+  }
+  .content {
+    padding-block: 30px;
+  }
+  .content .content-cart-filters-div {
+    width: 350px;
+  }
+  .content .content-cart-filters-div .show-cart, .content .content-cart-filters-div .show-filters {
+    padding-block: 6px;
+    font-size: 15px;
+  }
+  .content .content-cart-filters-div .show-cart i, .content .content-cart-filters-div .show-filters i {
+    font-size: 14px;
+  }
+  .content .content-cart-filters-div .filters .search-filter input[type="search"] {
+    width: 250px;
+  }
+  .content .content-cart-filters-div .filters .search-filter i {
+    font-size: 17px;
+  }
+  .content .content-cart-filters-div .filters .price-filter {
+    padding-inline: 38px;
+  }
+  .content .content-cart-filters-div .filters .price-filter p {
+    text-align: center;
+  }
+  .content .content-main {
+    gap: 10px;
+  }
+  .content .content-main .content-navbar {
+    width: 350px;
+    height: 50px;
+  }
+  .content .content-main .content-navbar .content-navbar-icons {
+    margin-right: auto;
+  }
+  .content .content-main .content-navbar .content-navbar-icons i {
+    font-size: 18px;
+  }
+  .content .content-main .content-navbar select {
+    font-size: 13px;
+    width: 110px;
+    height: 32px;
+  }
+  .content .content-main .content-items {
+    max-width: 350px;
+    gap: 15px;
+  }
+  .content .content-main .content-items .beer-box-grid {
+    width: 167px;
+  }
+  .content .content-main .content-items .beer-box-grid .img-grid {
+    width: 40px;
+    height: 140px;
+  }
+  .content .content-main .content-items .beer-box-grid .beer-description-grid {
+    width: 167px;
+  }
+  .content .content-main .content-items .beer-box-grid .beer-description-grid .price-grid {
+    margin-top: 10px;
+    padding-bottom: 8px;
+    font-size: 14px;
+  }
+  .content .content-main .content-items .beer-box-grid .beer-description-grid .add-to-cart-grid {
+    padding-block: 10px;
+    font-size: 13px;
+  }
+  .content .content-main .content-items .beer-box-list .img-list {
+    width: 40px;
+    height: 140px;
+    margin-inline: 20px;
+  }
+  .content .content-main .content-items .beer-box-list .beer-description-list .h3-list {
+    font-size: 18px;
+  }
+  .content .content-main .content-items .beer-box-list .beer-description-list .description-text-list {
+    font-size: 12px;
+  }
+  .content .content-main .content-items .beer-box-list .beer-description-list .price-list {
+    margin-top: 10px;
+    padding-bottom: 8px;
+    font-size: 14px;
+  }
+  .content .content-main .content-items .beer-box-list .beer-description-list .add-to-cart-list {
+    padding-block: 7px;
+    width: 110px;
+    font-size: 12px;
+  }
+  .content .content-main .content-items .modal .modal-content {
+    padding-block: 15px;
+    margin: 40% auto;
+    width: 350px;
+    height: auto;
+  }
+  .content .content-main .content-items .modal .modal-content img {
+    width: 40px;
+    height: 140px;
+    margin-inline: 30px;
+    margin-block: 10px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description {
+    padding-right: 12px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description h3 {
+    font-size: 18px;
+    margin-bottom: 0px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description p {
+    font-size: 11px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer {
+    margin-top: 10px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer .modal-buy-beer-input-div {
+    width: 55px;
+    font-size: 11px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer .modal-buy-beer-input-div input {
+    height: 30px;
+    padding-left: 10px;
+    font-size: 12px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer .modal-buy-beer-input-div .modal-buy-beer-input-quantity span {
+    height: 15px;
+    font-size: 11px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-buy-beer button {
+    height: 30px;
+    padding-inline: 15px;
+    font-size: 11px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .line {
+    margin-top: 10px;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description h5 {
+    margin-top: 8px;
+    font-size: 0.8rem;
+  }
+  .content .content-main .content-items .modal .modal-content .modal-beer-content-description .modal-ingredients span {
+    font-size: 9px;
   }
   .content .content-main .navigate-arrows {
     font-size: 18px;
