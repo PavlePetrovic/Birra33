@@ -5,45 +5,43 @@ let page1 = document.getElementById('page-1')
 let page2 = document.getElementById('page-2')
 let page3 = document.getElementById('page-3')
 
+let axiosURL = ``
+
 let pageNumber = 1
 let perPage = 10
-
-let axiosURL = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=${perPage}`
 
 selectView.addEventListener('click', () => {
     let selectViewValue = selectView.options[selectView.selectedIndex].value;
     selectViewValue = parseInt(selectViewValue)
 
-    if(selectViewValue === 10) {
+    if (selectViewValue === 10) {
         perPage = 10
-    } else if(selectViewValue === 20) {
+    } else if (selectViewValue === 20) {
         perPage = 20
-    } else if(selectViewValue === 30) {
+    } else if (selectViewValue === 30) {
         perPage = 30
     }
 
-    axiosURL = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=${perPage}`
-    getData(axiosURL)
+    getData()
 })
 
 leftArrow.addEventListener('click', () => {
-    if(pageNumber === 1) {
+    if (pageNumber === 1) {
         pageNumber = 1
     } else {
         pageNumber = pageNumber - 1
-        axiosURL = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=${perPage}`
-        getData(axiosURL)
+        getData()
     }
 
-    if(pageNumber === 1) {
+    if (pageNumber === 1) {
         page1.classList.add('clicked')
         page2.classList.remove('clicked')
         page3.classList.remove('clicked')
-    } else if(pageNumber === 2) {
+    } else if (pageNumber === 2) {
         page1.classList.remove('clicked')
         page2.classList.add('clicked')
         page3.classList.remove('clicked')
-    } else if(pageNumber === 3) {
+    } else if (pageNumber === 3) {
         page1.classList.remove('clicked')
         page2.classList.remove('clicked')
         page3.classList.add('clicked')
@@ -51,23 +49,22 @@ leftArrow.addEventListener('click', () => {
 })
 
 rightArrow.addEventListener('click', () => {
-    if(pageNumber === 3) {
+    if (pageNumber === 3) {
         pageNumber = 3
     } else {
         pageNumber = pageNumber + 1
-        axiosURL = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=${perPage}`
-        getData(axiosURL)
+        getData()
     }
 
-    if(pageNumber === 1) {
+    if (pageNumber === 1) {
         page1.classList.add('clicked')
         page2.classList.remove('clicked')
         page3.classList.remove('clicked')
-    } else if(pageNumber === 2) {
+    } else if (pageNumber === 2) {
         page1.classList.remove('clicked')
         page2.classList.add('clicked')
         page3.classList.remove('clicked')
-    } else if(pageNumber === 3) {
+    } else if (pageNumber === 3) {
         page1.classList.remove('clicked')
         page2.classList.remove('clicked')
         page3.classList.add('clicked')
@@ -76,8 +73,7 @@ rightArrow.addEventListener('click', () => {
 
 page1.addEventListener('click', () => {
     pageNumber = 1
-    axiosURL = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=${perPage}`
-    getData(axiosURL)
+    getData()
 
     page1.classList.add('clicked')
     page2.classList.remove('clicked')
@@ -86,8 +82,7 @@ page1.addEventListener('click', () => {
 
 page2.addEventListener('click', () => {
     pageNumber = 2
-    axiosURL = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=${perPage}`
-    getData(axiosURL)
+    getData()
 
     page1.classList.remove('clicked')
     page2.classList.add('clicked')
@@ -96,16 +91,17 @@ page2.addEventListener('click', () => {
 
 page3.addEventListener('click', () => {
     pageNumber = 3
-    axiosURL = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=${perPage}`
-    getData(axiosURL)
+    getData()
 
     page1.classList.remove('clicked')
     page2.classList.remove('clicked')
     page3.classList.add('clicked')
 })
 
-function getData(url) {
-    axios.get(url)
+function getData() {
+    axiosURL = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=${perPage}`
+
+    axios.get(axiosURL)
         .then(res => {
             showTemplate(res.data)
             onDisplayViewChange()
@@ -118,7 +114,7 @@ function getData(url) {
             console.log(err);
         })
 }
-getData(axiosURL) 
+getData() 
 
 function showTemplate(data) {
     let scriptTemplate = document.querySelector('#template')
@@ -152,7 +148,7 @@ function onSearch(data) {
     searchBtn.addEventListener('click', () => {
         let searchBarValue = searchBar.value
 
-        if( searchBarValue.length < 2 ){
+        if ( searchBarValue.length < 2 ){
             snackbar.className = "show"
             snackbar.innerText = "Beer name"
             showTemplate(data)
@@ -166,11 +162,11 @@ function onSearch(data) {
             resetSearch.style.display = 'block'
 
             data.forEach(beer => {
-                if(beer.name.toLowerCase() === searchBarValue.toLowerCase()) {
-                    if(!searchedBeer.includes(beer)) {
+                if (beer.name.toLowerCase() === searchBarValue.toLowerCase()) {
+                    if (!searchedBeer.includes(beer)) {
                         searchedBeer.push(beer)
                     } 
-                    if(searchedBeer.length > 1) {
+                    if (searchedBeer.length > 1) {
                         searchedBeer.shift()
                     }
                 }
@@ -285,19 +281,19 @@ function addToCart(data) {
     let beersInCart
     let totalPrice
 
-    if(localStorage.getItem("totalPrice") === null) {
+    if (localStorage.getItem("totalPrice") === null) {
         totalPrice = 0
     } else {
         totalPrice = JSON.parse(localStorage.getItem("totalPrice"))
     }
     
-    if(localStorage.getItem("beersInCart") === null) {
+    if (localStorage.getItem("beersInCart") === null) {
         beersInCart = []
     } else {
         beersInCart = JSON.parse(localStorage.getItem("beersInCart"))
     }
 
-    if(beersInCart.length < 1) {
+    if (beersInCart.length < 1) {
         cartPlaceholder.innerText = 'No products in the cart'
         total.innerText = ``
     } else {
@@ -312,21 +308,21 @@ function addToCart(data) {
     
     beerBox.forEach(beerDivItem => {
         beerDivItem.addEventListener('click', (e) => {
-            if(e.target.tagName === 'BUTTON') {
+            if (e.target.tagName === 'BUTTON') {
                 cartPlaceholder.innerText = ''
                 let beerName = beerDivItem.children[1].children[0].innerText
                 data.forEach(beerData => {
-                    if(beerName === beerData.name) {
+                    if (beerName === beerData.name) {
                         let isBeerInCart = false
                         beersInCart.forEach(beer => {
-                            if(beer.name === beerData.name) {
+                            if (beer.name === beerData.name) {
                                 beer.selectedBeerQuantity =  beer.selectedBeerQuantity + 1
                                 let price = beer.abv
                                 totalPrice += price
                                 isBeerInCart = true
                             } 
                         })
-                        if(isBeerInCart === false) {
+                        if (isBeerInCart === false) {
                             beerData.selectedBeerQuantity = 1
                             beersInCart.push(beerData)
                             let price = beerData.abv
@@ -344,7 +340,7 @@ function addToCart(data) {
     })
 
     cartPrices.addEventListener('click', (e) => {
-        if(e.target.tagName === 'I') {
+        if (e.target.tagName === 'I') {
             let clickedItem = e.target.parentElement
             let itemText = clickedItem.innerHTML
             let indexOfIcoStart = itemText.indexOf('<')
@@ -355,7 +351,7 @@ function addToCart(data) {
 
             clickedItem.remove()
         
-            if(beersInCart.length === 1) {
+            if (beersInCart.length === 1) {
                 beersInCart.pop()
                 cartPlaceholder.innerText = 'No products in the cart'
                 total.innerText = ``
@@ -363,7 +359,7 @@ function addToCart(data) {
                 localStorage.setItem('totalPrice', JSON.stringify(totalPrice))
             } else {
                 beersInCart.forEach(beer => {
-                    if(beer.name === delItemName) {
+                    if (beer.name === delItemName) {
                         totalPrice = JSON.parse(localStorage.getItem("totalPrice"))
                         totalPrice = totalPrice - beer.selectedBeerQuantity * beer.abv
                         total.innerText = `TOTAL: $${totalPrice.toFixed(1)}`
@@ -401,20 +397,20 @@ function onInputPriceChange(data) {
 
     let condition = false
     data.forEach(beer => {
-        if(beer.abv >= price1 && beer.abv <= price2) {
-            if(!beersInPriceRange.includes(beer)) {
+        if (beer.abv >= price1 && beer.abv <= price2) {
+            if (!beersInPriceRange.includes(beer)) {
                 beersInPriceRange.push(beer)
             }
             condition = true
         } else {
-            if(beersInPriceRange.includes(beer)) {
+            if (beersInPriceRange.includes(beer)) {
                 let beerIndex = beersInPriceRange.indexOf(beer)
                 beersInPriceRange.splice(beerIndex, 1)
             }
         }
     })
 
-    if(condition === false) {
+    if (condition === false) {
         beersInPriceRange = []
     }
     
@@ -450,21 +446,21 @@ function onBtnFilterClick() {
         
         let food = document.querySelectorAll('.radio-filter div input[name="food"]')
         food.forEach(radio => {
-            if(radio.checked) {
+            if (radio.checked) {
                 pickedFood = radio.value
             }
         })
 
         let url = axiosURL
 
-        if(after && before && pickedFood) {
-            url = `${url}&brewed_after=${afterMonth}-${afterYear}&brewed_before=${beforeMonth}-${beforeYear}&food=${pickedFood}&per_page=${perPage}`
-                
-        } else if(after && before) {
-            url = `${url}&brewed_after=${afterMonth}-${afterYear}&brewed_before=${beforeMonth}-${beforeYear}&per_page=${perPage}`
-               
-        } else if(pickedFood) {
-            url = `${url}&food=${pickedFood}&per_page=${perPage}`
+        if (after) {
+            url = `${url}&brewed_after=${afterMonth}-${afterYear}`      
+        }
+        if (before) {
+            url = `${url}&brewed_before=${beforeMonth}-${beforeYear}`        
+        }
+        if (pickedFood) {
+            url = `${url}&food=${pickedFood}`
         }
 
         axios.get(url)
@@ -509,21 +505,21 @@ function showBeerModal(data) {
 
     beerBox.forEach(beer => {
         beer.addEventListener('click', (e) => {
-            if(e.target.tagName != 'BUTTON') { 
+            if (e.target.tagName != 'BUTTON') { 
                 let clickedBeerName = beer.children[1].children[0].innerText
                 let clickedModal
                 let clickedBeerData 
 
                 modal.forEach(mod => {
                     let modBeerName = mod.children[0].innerText
-                    if(clickedBeerName === modBeerName) {
+                    if (clickedBeerName === modBeerName) {
                         mod.style.display = "block";
                         clickedModal = mod
                     }
                 })
 
                 data.forEach(beer => {
-                    if(beer.name === clickedBeerName) {
+                    if (beer.name === clickedBeerName) {
                         clickedBeerData = beer
                     }
                 })
@@ -543,7 +539,7 @@ function showBeerModal(data) {
 
                 upDown.addEventListener('click', () => {
                     let inputValue = parseInt(quantityInput.value)
-                    if(inputValue === 1) {
+                    if (inputValue === 1) {
                         quantityInput.value = 1
                     } else {
                         inputValue--
@@ -560,13 +556,13 @@ function showBeerModal(data) {
                     let beersInCart
                     let totalPrice
 
-                    if(localStorage.getItem("totalPrice") === null) {
+                    if (localStorage.getItem("totalPrice") === null) {
                         totalPrice = 0
                     } else {
                         totalPrice = JSON.parse(localStorage.getItem("totalPrice"))
                     }
 
-                    if(localStorage.getItem("beersInCart") === null) {
+                    if (localStorage.getItem("beersInCart") === null) {
                         beersInCart = []
                     } else {
                         beersInCart = JSON.parse(localStorage.getItem("beersInCart"))
@@ -584,7 +580,7 @@ function showBeerModal(data) {
                     let isBeerInCart = false
 
                     beersInCart.forEach(beer => {
-                        if(beer.name === clickedBeerName) {
+                        if (beer.name === clickedBeerName) {
                             beer.selectedBeerQuantity =  beer.selectedBeerQuantity + inputValue
                             let price = beer.abv
                             totalPrice = price * inputValue + totalPrice
@@ -593,7 +589,7 @@ function showBeerModal(data) {
                         } 
                     })
 
-                    if(isBeerInCart === false) {
+                    if (isBeerInCart === false) {
                         clickedBeerData.selectedBeerQuantity = inputValue
                         beersInCart.push(clickedBeerData)
                         let price = clickedBeerData.abv * inputValue
