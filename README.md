@@ -19,7 +19,7 @@ Some of the functionalities you can find in Bira33 project are:
 * Food filter
 * Show card/Show list view
 * Detail info view on card click
-* Card to shop add/remove
+* Shop cart add/remove
 
 ## Technologies
 
