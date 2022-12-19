@@ -10,8 +10,7 @@ Take a look: [Bira33 site](https://bira33.netlify.app/)
 
 ## General info
 
-Bira33 is fully responsive web shop build from scratch. In this project I use Punkapi to get all beer data I need and Handlebars to make each beer model view.
-Some of the functionalities you can find in Bira33 project are:
+Bira33 is fully responsive web shop build from scratch. In this project I use Punkapi to get all beer data I need and Handlebars to make each beer model view. Some of the functionalities you can find in Bira33 project are:
 * Pagination
 * Search filter
 * Price range filter
